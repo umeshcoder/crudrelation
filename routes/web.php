@@ -1,7 +1,11 @@
 <?php
+
 use App\Http\controllers\DairyController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataController;
+use App\Http\Controllers\AdminController;
+use GuzzleHttp\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +18,14 @@ use App\Http\Controllers\DataController;
 |
 */
 
-Route::get('/',[DairyController::class,'index'])->name('welcome');
+Route::get('/register',[AuthController::class,'register'])->name('register');
+Route::post('/register',[AuthController::class,'registerpost'])->name('registerpost');
+Route::get('/login',[AuthController::class,'login'])->name('login');
+Route::post('/login',[AuthController::class,'loginpost'])->name('loginpost');
+
+Route::get('/home',[DairyController::class,'home'])->name('home');
+
+Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 Route::get('/create',[DairyController::class,'make'])->name('create');
 Route::get('/profile',[DairyController::class,'profile'])->name('profile');
 Route::get('/online',[DairyController::class,'online'])->name('online');
@@ -26,3 +37,5 @@ Route::get('/edit/{id}',[DairyController::class,'edit'])->name('editDairy');
 Route::post('/edit/{id}',[DairyController::class,'editPost'])->name('editPost');
 Route::get('/delete/{id}',[DairyController::class,'delete'])->name('deleteDairy');
 Route::get('/data',[DataController::class,'data'])->name('data');
+Route::get('/adminpanel',[AdminController::class,'admin'])->name('admin');
+Route::get('/no-acess',[DataController::class,'noacess'])->name('noacess');

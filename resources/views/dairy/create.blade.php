@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{asset('storage/food.jpg')}}">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>chamena.com</title>
     <style>
+        
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -47,7 +51,7 @@
 <body>
 
     <header>
-        <img src = "C:\Users\User\Desktop\food.jpg">
+        <!-- <img src ="{{asset('storage/food.jpg')}}"> -->
         <h1>chamena Griha</h1>
         <p>Welcome to our awesome place !</p>
     </header>
@@ -59,6 +63,8 @@
         <a href="#">Contact</a>
         <a href="{{route('item')}}">Item</a>
         <a href="{{route('online')}}">Order Online</a>
+        <a href="{{route('login')}}">sign in</a>
+        
     </nav>
 
     <section>
@@ -97,7 +103,9 @@ Join us for an extraordinary dining experience at [Restaurant Name]. To ensure y
     </section>
 
     <footer>
+        <marquee behavior="" direction=""> customer satisficaton is our motto</marquee>
         <p>&copy; 2023 Chamena Griha. All rights reserved.</p>
+        
     </footer>
 
 </body>

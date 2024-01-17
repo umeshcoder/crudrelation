@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\models\dairy;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 use Illuminate\Http\Request;
 
@@ -11,10 +13,10 @@ class DairyController extends Controller
 {
     public function index()
     {
-    
-        $products = dairy::all();
-        return view('dairy.store',compact('products'));
+        return view('dairy.index');
     }
+    
+    
 
     public function make(){
         return view('dairy.create');
@@ -27,6 +29,7 @@ class DairyController extends Controller
     }
     public function item(){
         return view('dairy.item');
+
     }
     public function showStore(){
         $products = dairy::all();
@@ -34,6 +37,21 @@ class DairyController extends Controller
     }
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => ['required', function($attribute, $value, $fail) {
+                if(preg_match('/[!@#$%^&*(),.?":{}|\/\-\+\|\[\]<>0-9]/', $value)) {
+                    $fail("The $attribute cannot contain special characters or numbers.");
+                }
+                if(preg_match("/\'/", $value)){
+                    $fail("The $attribute cannot contain special characters or numbers.");
+                }
+            }],
+            'description' => ['required'],
+        ]);
+
+
+
+
         $products = new dairy();
         $products ->name = $request->name;
         $products ->description = $request->description;
@@ -48,6 +66,7 @@ class DairyController extends Controller
         $products = dairy::find($id);
         return view('dairy.edit')->with(compact('products'));
     }
+
 
 
 
@@ -74,4 +93,12 @@ class DairyController extends Controller
         $products->delete();
         return redirect(route('store'));
     }
+
+    public function home()
+    {
+        $user = User::find(Auth::user()->id);
+        return view('dairy.home')->with(compact('user'));
+    }
+
+
 }
