@@ -16,7 +16,10 @@
     <label for="name">Price</label><br>
     <input type="text" class="form-control" id="price" name="price" aria-describedby="nameHelp" value="{{$products->price}}">
   </div><br>
-
+  <div class="form-group">
+    <label for="image">image</label><br>
+    <input type="file" class="form-control" id="image" name="image" aria-describedby="nameHelp" >
+  </div><br>
   
     
     

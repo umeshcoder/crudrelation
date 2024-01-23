@@ -9,6 +9,7 @@
       <th scope="col">Name</th>
       <th scope="col">Description</th>
       <th scope="col">Price</th>
+      <th scope="col">image</th>
       <th scope="col">Edit</th>
       <th scope="col">Delete</th>
     </tr>
@@ -21,6 +22,7 @@
       <td>{{$product->name}}</td>
       <td>{{$product->description}}</td>
       <td>{{$product->price}}</td>
+      <td><img src='{{$product->image}}' width='100px' height='100px'></td>
       <td><a href="{{route('editDairy',['id'=>$product->id])}}">Edit</a></td>
       <td><a href="{{route('deleteDairy',['id'=>$product->id])}}">Delete</a></td>
     </tr>

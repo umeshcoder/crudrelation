@@ -56,6 +56,17 @@ class DairyController extends Controller
         $products ->name = $request->name;
         $products ->description = $request->description;
         $products ->price = $request->price;
+
+        if($request->file('image') !== null){
+            $nameData = asset('storage/blog').'/'.date("Y-m-d",time()).'-'.time().'-blog-'.$request->file('image')->getClientOriginalName();
+            $name = date("Y-m-d",time()).'-'.time().'-blog-'.$request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('/public/blog', $name);
+            $products['image'] = $nameData;
+        }
+
+
+
+
         $products -> save();
         
         return redirect(route('store'));
@@ -77,6 +88,18 @@ class DairyController extends Controller
         $products->name = $request->name ?? $products->name;
         $products->description = $request->description ?? $products->desription;
         $products->price = $request->price ?? $products->price;
+
+        if($request->file('image') !== null){
+            $nameData = asset('storage/blog').'/'.date("Y-m-d",time()).'-'.time().'-blog-'.$request->file('image')->getClientOriginalName();
+            $name = date("Y-m-d",time()).'-'.time().'-blog-'.$request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('/public/blog', $name);
+            $products['image'] = $nameData;
+        }
+
+
+
+
+
         if($products->save())
         {
             return redirect(route('store'));
